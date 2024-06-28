@@ -35,7 +35,7 @@ document.body.append(stopwatchTimerWrapper);
 // a stopwatch
 
 let intervalIDStopwatch;
-let secondsStopwatch = 1;
+let secondsStopwatch = 0;
 let intervalIDTimer;
 let secondsTimer = null;
 
@@ -58,9 +58,9 @@ function stopStopwatch() {
 }
 
 function stopwatchCount() {
+  secondsStopwatch = secondsStopwatch + 1;
   const timeText = changeSecondsToMin(secondsStopwatch);
   stopwatch.textContent = `${timeText.minText}:${timeText.secText}`;
-  secondsStopwatch = secondsStopwatch + 1;
 }
 
 // a timer
@@ -109,22 +109,17 @@ function timerCount() {
     secondsTimer = null;
     return;
   }
+
   const timeText = changeSecondsToMin(secondsTimer);
   timerMin.value = timeText.minText;
   timerSec.value = timeText.secText;
-
   secondsTimer = secondsTimer - 1;
 }
 
 function changeSecondsToMin(sec) {
   let min = Math.trunc(sec / 60);
-  secondsFromMinutes = Math.floor((sec / 60 - min) * 60);
-
-  if (secondsFromMinutes < 10) secText = `0${secondsFromMinutes}`;
-  if (secondsFromMinutes >= 10 && secondsFromMinutes < 60)
-    secText = `${secondsFromMinutes}`;
-  if (min === 0) minText = `00`;
-  if (min > 0 && min < 10) minText = `0${min}`;
-  if (min >= 10) minText = `${min}`;
+  secondsFromMinutes = sec % 60;
+  secText = `${secondsFromMinutes}`.padStart(2, "0");
+  minText = `${min}`.padStart(2, "0");
   return { secText, minText };
 }

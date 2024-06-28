@@ -12,8 +12,9 @@ button.addEventListener("mouseover", () => {
 button.addEventListener("click", changeButtonPosition);
 
 function changeButtonPosition() {
-  const rightRandom = Math.random() * window.innerWidth;
-  const topRandom = Math.random() * window.innerHeight;
+  const bodyPadding = 100;
+  const rightRandom = Math.random() * (window.innerWidth - bodyPadding);
+  const topRandom = Math.random() * (window.innerHeight - bodyPadding);
   button.style.top = `${topRandom}px`;
   button.style.right = `${rightRandom}px`;
 }

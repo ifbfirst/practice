@@ -8,10 +8,8 @@ class DataHandler {
     try {
       const data = await response.json();
       this.posts = data;
-      return Promise.resolve();
     } catch {
       (err) => console.log(err);
-      return Promise.reject();
     }
   }
 

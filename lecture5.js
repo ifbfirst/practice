@@ -39,10 +39,11 @@ class Stack {
   }
 
   static fromIterable(iterable) {
-    const newStack = new Stack(iterable.length);
+    const data = Array.from(iterable);
+    const newStack = new Stack(data.length);
     try {
-      for (let i = 0; i < iterable.length; i++) {
-        newStack.push(iterable[i]);
+      for (let i = 0; i < data.length; i++) {
+        newStack.push(data[i]);
       }
       return newStack;
     } catch (err) {
